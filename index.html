@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html lang = "en">
+    <head>
+        <meta charset = "utf-8">
+        
+        <link href="https://unpkg.com/material-components-web@v4.0.0/dist/material-components-web.min.css" rel="stylesheet">
+        <script src="https://unpkg.com/material-components-web@v4.0.0/dist/material-components-web.min.js"></script>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        
+        <style>
+            
+            .mdc-card {
+              height: 200px;
+              width: 350px;
+            }
+            
+            .my-card-content {
+              padding: 16px;
+            }
+
+        </style>
+    </head>
+    
+    <body>
+        <div class="mdc-card">
+            
+                <h1 >Some Title</h1>			
+                <div class="mdc-card__actions">
+                    <div class="mdc-card__action-buttons">
+                        <button class="mdc-button mdc-card__action mdc-card__action--button mdc-button--raised mdc-ripple-upgraded">
+                            Button 1
+                        </button>
+                        <button class="mdc-button mdc-card__action mdc-card__action--button mdc-button--raised mdc-ripple-upgraded">
+                            Button 2
+                        </button>
+                    </div>
+                </div>
+            
+        </div>
+        
+        
+        <script> 
+            
+            
+            fetch('https://randomuser.me/api/')
+                  .then((response) => {
+                    return response.json();
+                  })
+                  .then((data) => {
+                   console.log(data);
+                  let body = document.querySelector("body");
+                
+                  let card = document.createElement("div");
+                  card.classList.add("mdc-card");
+                
+                  let h2 = document.createElement("h2");
+                  let string = "";
+                  string = data.results[0].name.title + data.results[0].name.first + data.results[0].name.last;
+                  h2.textContent = string;
+                  card.appendChild(h2);
+                  
+                  let h3 = document.createElement("h3");
+                  h3.textContent = "Nat: " + data.results[0].nat + " Email: " + data.results[0].email;
+                  card.appendChild(h3);
+                  
+                  //image
+                  let image = document.createElement("img");
+                  image.src = data.results[0].picture.large;
+                  card.appendChild(image);
+                
+                  
+                
+                  body.appendChild(card);
+                  
+                  
+                
+                  });
+            
+            
+            
+        </script>
+    </body>
+</html>
